@@ -1,0 +1,33 @@
+version: "3.8"
+
+volumes:
+  lldap_data:
+    driver: local
+
+networks:
+  cosmos:
+    external: true
+
+services:
+  lldap:
+    image: lldap/lldap:stable
+    container_name: Mercure
+    environment:
+    - UID=1000
+    - GID=1000
+    - TZ=Europe/Paris
+    - LLDAP_KEY_SEED=jLXzt4gNMilZQy/cSHeG0q8GZAsLg0xehFGT2RqS4IU=
+    - LLDAP_JWT_SECRET=GykcELooimyC9BGOGDBD/qcT3F0gDyeOnQgZTojO4+0=
+    - LLDAP_LDAP_BASE_DN=dc=cosmos,dc=corp
+    - LLDAP_LDAP_USER_PASS=Skyline0605!
+    - LLDAP_WEB_PORT=17170
+    - LLDAP_LDAP_PORT=3890
+    - LLDAP_DATABASE_URL=sqlite:///data/users.db?mode=rwc
+    ports:
+      - "17170:17170"
+    volumes:
+      - "lldap_data:/data"
+    networks:
+      cosmos:
+        ipv4_address: 192.168.95.60
+    restart: unless-stopped
