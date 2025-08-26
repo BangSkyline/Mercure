@@ -7,7 +7,7 @@ Docker Compose configuration to deploy [**LLDAP**](https://github.com/lldap/llda
 # ⚡ How to Start : 
 
 - Clone the repo
-- In the cloned repo, paste this in the CLI, it will generate a 32 character long chain foe each in the .env file :
+- In the cloned repo, paste this in the CLI, it will generate a 32 character long chain for each in the .env file :
 
 ```bash
 sed -i "s|^LLDAP_JWT_SECRET=.*|LLDAP_JWT_SECRET=$(openssl rand -base64 32 | tr -d '\r\n')|" .env
